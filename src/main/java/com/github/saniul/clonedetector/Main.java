@@ -16,7 +16,7 @@ public class Main
 			List<MainAlgorithm.CloneLines> lines = new MainAlgorithm().check(args[0]);
 			
 			for(MainAlgorithm.CloneLines line : lines)
-	    		System.out.println(line.displayMatch());
+	    		System.out.println(line);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

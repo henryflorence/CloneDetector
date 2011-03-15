@@ -15,8 +15,8 @@ import java.util.Iterator;
 public class MainAlgorithm {
 	private List<CloneLines> groups; 
 	
-	public void setCloneGroups(ArrayList<CloneLines> groups) {
-		this.setCloneGroups(groups);
+	public void setCloneGroups(List<CloneLines> groups) {
+		this.groups = groups;
 	}
 	public List<CloneLines> check(String file) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
@@ -60,8 +60,7 @@ public class MainAlgorithm {
 						duplicateLines.put(dups.get(i),dups.get(0));
 		}
 	}
-	public void collateLines(BufferedReader bufferedReader,
-			ChainedHashMap<String, Integer> fileLines) throws IOException {
+	public void collateLines(BufferedReader bufferedReader,Map<String, Integer> fileLines) throws IOException {
 		String line;
 		int lineNo = 0;
 		while((line = bufferedReader.readLine()) != null)
@@ -88,7 +87,7 @@ public class MainAlgorithm {
 		public int curDupLine() {
 			return dupStartLine + dupGroupLength;
 		}
-		public String displayMatch() { 
+		public String toString() { 
 			return (dupStartLine+1)+"-"+(dupStartLine+dupGroupLength) + ":"
 					+ (origStartLine+1)+"-"+(origStartLine+origGroupLength);
 		}
