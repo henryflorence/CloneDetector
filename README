@@ -45,5 +45,5 @@ more info on maven2: http://maven.apache.org/guides/getting-started/index.html
 fix for environment variable unbound error in eclipse:
 Window->Build Path->Classpath Variables
 Click "new..."
-M2_REPO = ~/.m2/repositories
+M2_REPO = ~/.m2/repository
 
