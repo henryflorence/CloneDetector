@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.List;
 import java.util.HashMap;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class ChainedHashMap<K,V> implements Map<K,V> {
 	private Map<K,List<V>> map = new HashMap<K,List<V>>();
 	@Override
@@ -16,34 +18,29 @@ public class ChainedHashMap<K,V> implements Map<K,V> {
 
 	@Override
 	public boolean containsKey(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean containsValue(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Set<java.util.Map.Entry<K, V>> entrySet() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public V get(Object arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 	public List<V> getChain(K arg0) {
 		return map.get(arg0);
 	}
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
@@ -63,19 +60,16 @@ public class ChainedHashMap<K,V> implements Map<K,V> {
 		return null;
 	}
 	public void putChain(K arg0, List<V> list) {
-		if(map.containsKey(arg0))
-			map.get(arg0).addAll(list);
 		map.put(arg0,list);
 	}
 	@Override
 	public void putAll(Map<? extends K, ? extends V> arg0) {
-		// TODO Auto-generated method stub
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public V remove(Object arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
@@ -85,8 +79,7 @@ public class ChainedHashMap<K,V> implements Map<K,V> {
 
 	@Override
 	public Collection<V> values() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 }

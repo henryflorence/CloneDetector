@@ -5,6 +5,8 @@ mvn clean
 mvn build
 mvn test  // if we can be bothered
 mvn package
+mvn emma:emma // code coverage
+mvn cobertura:cobertura // the pretty one
 
 to run packaged jar:
 java -jar target/clonedetector-1.0-SNAPSHOT.jar
