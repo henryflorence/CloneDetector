@@ -1,0 +1,43 @@
+using maven2(.2.1) build system: http://maven.apache.org/download.html
+
+commands run in root directory (same as this file):
+mvn clean
+mvn build
+mvn test  // if we can be bothered
+mvn package
+
+to run packaged jar:
+java -jar target/clonedetector-1.0-SNAPSHOT.jar
+
+to create eclipse project files:
+mvn eclipse:eclipse
+
+probably best that we all have seperate .project folders and target folders on our local machines
+
+mvn project structure (they are all like this):
+
+CloneDetector
+|-- pom.xml
+`-- src
+    |-- main
+    |   `-- java
+    |       `-- com
+    |           `-- github
+    |               `-- saniul
+    |                   `-- clonedetector
+    |                       `-- Main.java
+    |-- test                                    // if we can be bothered
+    |   `-- java
+    |       `-- com
+    |           `-- saniul
+    |               `-- clonedector
+    |                   `-- AppTest.java
+    `-- target                                 // created by 'mvn compile' removed by 'mvn clean'
+        |-- classes
+        |   `-- com 
+        .   ...blah.. .class
+        .
+        .                                      // test classes, reports, all that stuff
+        `-- clonedetector-1.0-SNAPSHOT.jar     // created by 'mvn package'
+        
+more info on maven2: http://maven.apache.org/guides/getting-started/index.html
