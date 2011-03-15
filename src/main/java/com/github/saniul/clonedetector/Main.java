@@ -2,8 +2,10 @@ package com.github.saniul.clonedetector;
 
 import java.io.IOException;
 
+import java.util.List;
+
 /**
- * Hello world!
+ * Main class that strings together the preprocessor and main algorithm
  *
  */
 public class Main 
@@ -11,10 +13,10 @@ public class Main
     public static void main( String[] args )
     {
 		try {
-			MainAlgorithm.CloneLines[] lines = new MainAlgorithm().check(args[0]);
+			List<MainAlgorithm.CloneLines> lines = new MainAlgorithm().check(args[0]);
 			
 			for(MainAlgorithm.CloneLines line : lines)
-	    		System.out.print(line.displayMatch());
+	    		System.out.println(line.displayMatch());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

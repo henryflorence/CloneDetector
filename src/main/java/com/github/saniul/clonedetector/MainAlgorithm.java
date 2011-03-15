@@ -5,12 +5,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.Iterator;
 
 public class MainAlgorithm {
-	public CloneLines[] check(String file) throws IOException {
+	private List<CloneLines> groups; 
+	
+	public void setCloneGroups(ArrayList<CloneLines> groups) {
+		this.setCloneGroups(groups);
+	}
+	public List<CloneLines> check(String file) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 		
 		ChainedHashMap<String,Integer> fileLines = new ChainedHashMap<String,Integer>();
@@ -19,16 +27,27 @@ public class MainAlgorithm {
 		Map<Integer,Integer> duplicateLines = new HashMap<Integer,Integer>();
 		findDuplicates(fileLines, duplicateLines);
 			
-		ArrayList<CloneLines> lines = findGroups(duplicateLines);
+		List<CloneLines> lines = findGroups(duplicateLines);
 		
-		return lines.toArray(new CloneLines[0]);
+		return lines;
 	}
-	public ArrayList<CloneLines> findGroups(Map<Integer,Integer> duplicateLines) {
-		ArrayList<CloneLines> groups = new ArrayList<CloneLines>();
+	public List<CloneLines> findGroups(Map<Integer,Integer> duplicateLines) {
+		if(duplicateLines.keySet().size() < 2) return new LinkedList<CloneLines>();
 		
-		for(int line : new TreeSet<Integer>(duplicateLines.keySet())) {
+		SortedSet<Integer> sortedDuplicates = new TreeSet<Integer>(duplicateLines.keySet());
+		groups = new LinkedList<CloneLines>();
+		
+		Iterator<Integer> iterator = sortedDuplicates.iterator();
+		int line = iterator.next();
+		CloneLines clone  = new CloneLines(duplicateLines.get(line),line);
+		
+		while(iterator.hasNext()) {
+			line = iterator.next();
 			
-			
+			if(line == clone.curDupLine() && duplicateLines.get(line) == clone.curOrigLine())
+				clone.increment();
+			else
+				clone = new CloneLines(duplicateLines.get(line),line);
 		}
 			
 		return groups;
@@ -39,7 +58,6 @@ public class MainAlgorithm {
 			if(dups.size() > 1) 
 				for(int i=1; i < dups.size(); i++)
 						duplicateLines.put(dups.get(i),dups.get(0));
-			
 		}
 	}
 	public void collateLines(BufferedReader bufferedReader,
@@ -52,19 +70,30 @@ public class MainAlgorithm {
 	public class CloneLines {
 		int origStartLine;
 		int dupStartLine;
-		int origGroupLength = 0;
-		int dupGroupLength = 0;
+		int origGroupLength = 1;
+		int dupGroupLength = 1;
 		
 		public CloneLines(int origStartLine, int dupStartLine) {
 			this.origStartLine = origStartLine; 
-			this.dupStartLine = dupStartLine; 
+			this.dupStartLine = dupStartLine;
+			groups.add(this);
 		}
-		public void incrOrig() {
+		public void increment() {
 			origGroupLength++;
-		}
-		public void incrDup() {
 			dupGroupLength++;	
 		}
-		public String displayMatch() { return null; } 
+		public int curOrigLine() {
+			return origStartLine + origGroupLength;
+		}
+		public int curDupLine() {
+			return dupStartLine + dupGroupLength;
+		}
+		public String displayMatch() { 
+			return (dupStartLine+1)+"-"+(dupStartLine+dupGroupLength) + ":"
+					+ (origStartLine+1)+"-"+(origStartLine+origGroupLength);
+		}
+		public int getLength() {
+			return origGroupLength;
+		}
 	}
 }

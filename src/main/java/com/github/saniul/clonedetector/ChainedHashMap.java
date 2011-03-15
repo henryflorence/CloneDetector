@@ -53,7 +53,7 @@ public class ChainedHashMap<K,V> implements Map<K,V> {
 
 	@Override
 	public V put(K arg0, V arg1) {
-		if(!map.containsKey(arg0)) {
+		if(map.containsKey(arg0)) {
 			map.get(arg0).add(arg1);
 			return null;
 		}
