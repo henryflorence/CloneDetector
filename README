@@ -20,27 +20,27 @@ mvn project structure (they are all like this):
 
 CloneDetector
 |-- pom.xml
-`-- src
-    |-- main
-    |   `-- java
-    |       `-- com
-    |           `-- github
-    |               `-- saniul
-    |                   `-- clonedetector
-    |                       `-- Main.java
-    |-- test                                    // if we can be bothered
-    |   `-- java
-    |       `-- com
-    |           `-- saniul
-    |               `-- clonedector
-    |                   `-- AppTest.java
-    `-- target                                 // created by 'mvn compile' removed by 'mvn clean'
-        |-- classes
-        |   `-- com 
-        .   ...blah.. .class
-        .
-        .                                      // test classes, reports, all that stuff
-        `-- clonedetector-1.0-SNAPSHOT.jar     // created by 'mvn package'
+|-- src
+|   |-- main
+|   |   `-- java
+|   |       `-- com
+|   |           `-- github
+|   |               `-- saniul
+|   |                   `-- clonedetector
+|   |                       `-- Main.java
+|   `-- test                                    // if we can be bothered
+|       `-- java
+|           `-- com
+|               `-- saniul
+|                   `-- clonedector
+|                       `-- AppTest.java
+`-- target                                      // created by 'mvn compile' removed by 'mvn clean'
+    |-- classes
+    |   `-- com 
+    .   ...blah.. .class
+    .
+    .                                           // test classes, reports, all that stuff
+    `-- clonedetector-1.0-SNAPSHOT.jar          // created by 'mvn package'
         
 more info on maven2: http://maven.apache.org/guides/getting-started/index.html
 
