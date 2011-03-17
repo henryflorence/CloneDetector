@@ -1,11 +1,16 @@
 package com.github.saniul.clonedetector;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.Set;
 import java.util.List;
 import java.util.HashMap;
+import java.util.TreeSet;
+
+import com.github.saniul.clonedetector.MainAlgorithm.CloneLines;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -81,5 +86,4 @@ public class ChainedHashMap<K,V> implements Map<K,V> {
 	public Collection<V> values() {
 		throw new NotImplementedException();
 	}
-
 }

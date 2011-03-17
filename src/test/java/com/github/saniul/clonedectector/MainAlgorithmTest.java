@@ -16,12 +16,13 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.github.saniul.clonedetector.ChainedHashMap;
 import com.github.saniul.clonedetector.MainAlgorithm;
 
 public class MainAlgorithmTest {
 	private MainAlgorithm algo;
 	private List<MainAlgorithm.CloneLines> groups;
-	private Map<Integer,Integer> dupLines;
+	private ChainedHashMap<Integer,Integer> dupLines;
 	private Map<String, Integer> fileLines;
 	private List<String> lines;
 	
@@ -30,7 +31,7 @@ public class MainAlgorithmTest {
 		algo = new MainAlgorithm();
 		groups = new ArrayList<MainAlgorithm.CloneLines>();
 		algo.setCloneGroups(groups);
-		dupLines = new HashMap<Integer,Integer>();
+		dupLines = new ChainedHashMap<Integer,Integer>();
 		fileLines = new HashMap<String,Integer>();
 		lines = new LinkedList<String>();
     }
@@ -56,7 +57,9 @@ public class MainAlgorithmTest {
 		List<MainAlgorithm.CloneLines> out = algo.findGroups(dupLines);
 		assertEquals(out.size(),0);
 		
-		dupLines.put(1, 1);
+		List<Integer> chain = new LinkedList<Integer>();
+		chain.add(1);
+		dupLines.putChain(1, chain);
 		out = algo.findGroups(dupLines);
 		assertEquals(out.size(),0);
 	}

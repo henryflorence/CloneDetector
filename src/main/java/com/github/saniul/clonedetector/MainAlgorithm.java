@@ -24,40 +24,56 @@ public class MainAlgorithm {
 		ChainedHashMap<String,Integer> fileLines = new ChainedHashMap<String,Integer>();
 		collateLines(bufferedReader, fileLines);
 		
-		Map<Integer,Integer> duplicateLines = new HashMap<Integer,Integer>();
+		ChainedHashMap<Integer,Integer> duplicateLines = new ChainedHashMap<Integer,Integer>();
 		findDuplicates(fileLines, duplicateLines);
 			
 		List<CloneLines> lines = findGroups(duplicateLines);
 		
 		return lines;
 	}
-	public List<CloneLines> findGroups(Map<Integer,Integer> duplicateLines) {
+	public List<CloneLines> findGroups(ChainedHashMap<Integer,Integer> duplicateLines) {
 		if(duplicateLines.keySet().size() < 2) return new LinkedList<CloneLines>();
-		
+
 		SortedSet<Integer> sortedDuplicates = new TreeSet<Integer>(duplicateLines.keySet());
 		groups = new LinkedList<CloneLines>();
 		
-		Iterator<Integer> iterator = sortedDuplicates.iterator();
+		for(int line : sortedDuplicates) {
+			for(int origStart : duplicateLines.getChain(line)) {
+				CloneLines clone = new CloneLines(line,origStart);
+				
+				for(int nextLine : sortedDuplicates.tailSet(line+1)) {
+					if(nextLine == clone.curDupLine() && duplicateLines.getChain(nextLine).contains(clone.curOrigLine()))
+						clone.increment();
+					else
+						break;
+				}
+			}
+		}
+		/*Iterator<Integer> iterator = sortedDuplicates.iterator();
 		int line = iterator.next();
-		CloneLines clone  = new CloneLines(duplicateLines.get(line),line);
-		
+		CloneLines clone = new CloneLines(duplicateLines.getChain(line).get(0),line);
+
 		while(iterator.hasNext()) {
 			line = iterator.next();
-			
-			if(line == clone.curDupLine() && duplicateLines.get(line) == clone.curOrigLine())
+
+			if(line == clone.curDupLine() && duplicateLines.getChain(line).get(0) == clone.curOrigLine())
 				clone.increment();
 			else
-				clone = new CloneLines(duplicateLines.get(line),line);
-		}
-			
+				clone = new CloneLines(duplicateLines.getChain(line).get(0),line);
+		}*/
+
 		return groups;
 	}
-	private void findDuplicates(ChainedHashMap<String,Integer> fileLines, Map<Integer,Integer> duplicateLines) {
+	private void findDuplicates(ChainedHashMap<String,Integer> fileLines, ChainedHashMap<Integer,Integer> duplicateLines) {
 		for(String line : fileLines.keySet()) {
 			List<Integer> dups = fileLines.getChain(line);
-			if(dups.size() > 1) 
-				for(int i=1; i < dups.size(); i++)
-						duplicateLines.put(dups.get(i),dups.get(0));
+			if(dups.size() < 2) continue;
+			
+			for(int i=1; i < dups.size(); i++) {
+				List<Integer> others = dups.subList(0,i);
+				others.addAll(dups.subList(i+1,dups.size()));
+			    duplicateLines.putChain(dups.get(i),others);
+			}
 		}
 	}
 	public void collateLines(BufferedReader bufferedReader,Map<String, Integer> fileLines) throws IOException {
