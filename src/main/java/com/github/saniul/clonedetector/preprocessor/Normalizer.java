@@ -1,13 +1,20 @@
 package com.github.saniul.clonedetector.preprocessor;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.commons.lang.StringUtils;
 
-public class Normalizer {
+public class Normalizer extends FileProcessor {
+
+	public Normalizer(File file) {
+		super(file);
+	}
 
 	private final static String kwrds = "abstract|" + "assert|" + "boolean|"
 			+ "break|" + "byte|" + "case|" + "catch|" + "char|" + "class|"
@@ -35,22 +42,6 @@ public class Normalizer {
 
 	private final static String comments = "\\/\\/(.*)";
 
-	public void normalizeFile(String file) {
-		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(
-					file));
-			String line = null;
-			int lineNo=0;
-			while ((line = bufferedReader.readLine()) != null) {
-				System.out.println((lineNo++)+"\t"+normalizeLine(line));
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public String normalizeLine(String line) {
 		String result = line;
 		result = result.replaceAll(comments, " ");
@@ -70,6 +61,30 @@ public class Normalizer {
 		result = result.replaceAll(";", " SEMI ");
 		result = StringUtils.join(StringUtils.split(result), " ");
 		return result;
+	}
+
+	@Override
+	public File process() {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(
+					originalFile));
+
+			BufferedWriter writer = new BufferedWriter(new FileWriter(
+					processedFile));
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				writer.write(normalizeLine(line));
+				writer.newLine();
+			}
+			reader.close();
+			writer.flush();
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return processedFile;
 	}
 
 }
