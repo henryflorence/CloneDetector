@@ -1,16 +1,14 @@
 package com.github.saniul.clonedetector;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.Iterator;
 
 public class MainAlgorithm {
 	private List<CloneLines> groups; 
@@ -22,7 +20,7 @@ public class MainAlgorithm {
 		groups.add(lines);
 	}
 	
-	public List<CloneLines> check(String file) throws IOException {
+	public List<CloneLines> check(File file) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 		
 		ChainedHashMap<String,Integer> fileLines = new ChainedHashMap<String,Integer>();
