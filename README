@@ -2,7 +2,7 @@ using maven2(.2.1) build system: http://maven.apache.org/download.html
 
 commands run in root directory (same as this file):
 mvn clean
-mvn build
+mvn compile
 mvn test  // if we can be bothered
 mvn package
 mvn emma:emma // code coverage
