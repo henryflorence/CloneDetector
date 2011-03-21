@@ -18,7 +18,7 @@ import org.junit.Test;
 
 public class MainAlgorithmTest {
 	private MainAlgorithm algo;
-	private List<MainAlgorithm.CloneLines> groups;
+	private List<CloneLines> groups;
 	private ChainedHashMap<Integer, Integer> dupLines;
 	private Map<String, Integer> fileLines;
 	private List<String> lines;
@@ -26,7 +26,7 @@ public class MainAlgorithmTest {
 	@Before
 	public void setUp() {
 		algo = new MainAlgorithm();
-		groups = new ArrayList<MainAlgorithm.CloneLines>();
+		groups = new ArrayList<CloneLines>();
 		algo.setCloneGroups(groups);
 		dupLines = new ChainedHashMap<Integer, Integer>();
 		fileLines = new HashMap<String, Integer>();
@@ -35,7 +35,8 @@ public class MainAlgorithmTest {
 
 	@Test
 	public void testCloneLines() {
-		MainAlgorithm.CloneLines cloneLines = algo.new CloneLines(1, 2);
+		CloneLines cloneLines = new CloneLines(1, 2);
+		algo.add(cloneLines);
 		assertEquals(groups.size(), 1);
 		assertEquals(cloneLines.curOrigLine(), 2);
 		assertEquals(cloneLines.curDupLine(), 3);
@@ -52,7 +53,7 @@ public class MainAlgorithmTest {
 
 	@Test
 	public void testNoGroups() {
-		List<MainAlgorithm.CloneLines> out = algo.findGroups(dupLines);
+		List<CloneLines> out = algo.findGroups(dupLines);
 		assertEquals(out.size(), 0);
 
 		List<Integer> chain = new LinkedList<Integer>();
@@ -68,7 +69,7 @@ public class MainAlgorithmTest {
 		dupLines.put(2, 10);
 		dupLines.put(3, 11);
 
-		List<MainAlgorithm.CloneLines> cl = algo.findGroups(dupLines);
+		List<CloneLines> cl = algo.findGroups(dupLines);
 		assertEquals(cl.size(), 1);
 	}
 
@@ -80,7 +81,7 @@ public class MainAlgorithmTest {
 		dupLines.put(4, 10);
 		dupLines.put(5, 11);
 
-		List<MainAlgorithm.CloneLines> cl = algo.findGroups(dupLines);
+		List<CloneLines> cl = algo.findGroups(dupLines);
 		assertEquals(cl.size(), 2);
 	}
 
