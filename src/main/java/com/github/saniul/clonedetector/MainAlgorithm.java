@@ -37,19 +37,21 @@ public class MainAlgorithm {
 		SortedSet<Integer> sortedDuplicates = new TreeSet<Integer>(duplicateLines.keySet());
 		groups = new LinkedList<CloneLines>();
 		
-		for(int line : sortedDuplicates) {
+		/*for(int line : sortedDuplicates) {
 			for(int origStart : duplicateLines.getChain(line)) {
 				CloneLines clone = new CloneLines(line,origStart);
 				
 				for(int nextLine : sortedDuplicates.tailSet(line+1)) {
-					if(nextLine == clone.curDupLine() && duplicateLines.getChain(nextLine).contains(clone.curOrigLine()))
+					if(nextLine == clone.curDupLine() 
+							&& duplicateLines.getChain(nextLine).contains(clone.curOrigLine())) {
+						duplicateLines.getChain(nextLine).remove(clone.curOrigLine());
 						clone.increment();
-					else
+					} else
 						break;
 				}
 			}
-		}
-		/*Iterator<Integer> iterator = sortedDuplicates.iterator();
+		}*/
+		Iterator<Integer> iterator = sortedDuplicates.iterator();
 		int line = iterator.next();
 		CloneLines clone = new CloneLines(duplicateLines.getChain(line).get(0),line);
 
@@ -60,7 +62,7 @@ public class MainAlgorithm {
 				clone.increment();
 			else
 				clone = new CloneLines(duplicateLines.getChain(line).get(0),line);
-		}*/
+		}
 
 		return groups;
 	}
