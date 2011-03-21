@@ -9,17 +9,18 @@ public class CloneLines {
 	public CloneLines(int origStartLine, int dupStartLine) {
 		this.origStartLine = origStartLine; 
 		this.dupStartLine = dupStartLine;
-//		groups.add(this);
+	}
+	public CloneLines(int origStartLine, int dupStartLine, int origGroupLength, int dupGroupLength) {
+		this.origStartLine = origStartLine; 
+		this.dupStartLine = dupStartLine;
+		this.origGroupLength = origGroupLength;
+		this.dupGroupLength = dupGroupLength;
 	}
 	public void setLength(int length){
 		origGroupLength=length;
 		dupGroupLength=length;
 	}
 	
-	public void increment() {
-		origGroupLength++;
-		dupGroupLength++;	
-	}
 	public int getOrigStartLine(){
 		return origStartLine;
 	}

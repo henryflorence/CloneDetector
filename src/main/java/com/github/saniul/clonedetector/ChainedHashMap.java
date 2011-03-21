@@ -11,44 +11,44 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class ChainedHashMap<K,V> implements Map<K,V> {
 	private Map<K,List<V>> map = new HashMap<K,List<V>>();
-	@Override
+	//@Override
 	public void clear() {
 		map.clear();
 	}
 
-	@Override
+	//@Override
 	public boolean containsKey(Object arg0) {
 		throw new NotImplementedException();
 	}
 
-	@Override
+	//@Override
 	public boolean containsValue(Object arg0) {
 		throw new NotImplementedException();
 	}
 
-	@Override
+	//@Override
 	public Set<java.util.Map.Entry<K, V>> entrySet() {
 		throw new NotImplementedException();
 	}
 
-	@Override
+	//@Override
 	public V get(Object arg0) {
 		throw new NotImplementedException();
 	}
 	public List<V> getChain(K arg0) {
 		return map.get(arg0);
 	}
-	@Override
+	//@Override
 	public boolean isEmpty() {
 		throw new NotImplementedException();
 	}
 
-	@Override
+	//@Override
 	public Set<K> keySet() {
 		return map.keySet();
 	}
 
-	@Override
+	//@Override
 	public V put(K arg0, V arg1) {
 		if(map.containsKey(arg0)) {
 			map.get(arg0).add(arg1);
@@ -62,22 +62,22 @@ public class ChainedHashMap<K,V> implements Map<K,V> {
 	public void putChain(K arg0, List<V> list) {
 		map.put(arg0,list);
 	}
-	@Override
+	//@Override
 	public void putAll(Map<? extends K, ? extends V> arg0) {
 		throw new NotImplementedException();
 	}
 
-	@Override
+	//@Override
 	public V remove(Object arg0) {
 		throw new NotImplementedException();
 	}
 
-	@Override
+	//@Override
 	public int size() {
 		return map.size();
 	}
 
-	@Override
+	//@Override
 	public Collection<V> values() {
 		throw new NotImplementedException();
 	}

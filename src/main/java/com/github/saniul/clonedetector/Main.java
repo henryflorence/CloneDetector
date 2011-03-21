@@ -31,15 +31,5 @@ public class Main {
 		for(CloneLines cl:cloneLines){
 			System.out.println(cl);
 		}
-		// try {
-		// List<MainAlgorithm.CloneLines> lines = new
-		// MainAlgorithm().check(args[0]);
-		//
-		// for(MainAlgorithm.CloneLines line : lines)
-		// System.out.println(line);
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 	}
 }
