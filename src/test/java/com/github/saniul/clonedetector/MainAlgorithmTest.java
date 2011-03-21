@@ -37,19 +37,19 @@ public class MainAlgorithmTest {
 
 	@Test
 	public void testCloneLines() {
-		MainAlgorithm.DupLines cloneLines = algo.new DupLines(1,2);
+		MainAlgorithm.DupLines dupLines = algo.new DupLines(1,2);
 		assertEquals( groups.size(),1 );
-		assertEquals( cloneLines.curOrigLine(), 2);
-		assertEquals( cloneLines.curDupLine(), 3);
-		assertEquals( cloneLines.getLength(), 1);
-		assertEquals( cloneLines.toString(),"3-3:2-2");
+		assertEquals( dupLines.curOrigLine(), 2);
+		assertEquals( dupLines.curDupLine(), 3);
+		assertEquals( dupLines.getLength(), 1);
+		assertEquals( dupLines.toCloneLines().toString(),"3-3:2-2");
 
-		cloneLines.increment();
-		assertEquals( cloneLines.curOrigLine(), 3);
-		assertEquals( cloneLines.curDupLine(), 4);
-		assertEquals( cloneLines.getLength(), 2);
+		dupLines.increment();
+		assertEquals( dupLines.curOrigLine(), 3);
+		assertEquals( dupLines.curDupLine(), 4);
+		assertEquals( dupLines.getLength(), 2);
 
-		assertEquals( cloneLines.toString(),"3-4:2-3");
+		assertEquals( dupLines.toCloneLines().toString(),"3-4:2-3");
 	}
 	@Test
 	public void testNoGroups() {
