@@ -1,4 +1,4 @@
-package com.github.saniul.clonedectector;
+package com.github.saniul.clonedetector;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import sun.reflect.generics.reflectiveObjects.*;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import com.github.saniul.clonedetector.ChainedHashMap;
 
