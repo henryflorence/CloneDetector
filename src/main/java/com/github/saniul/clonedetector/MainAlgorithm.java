@@ -18,6 +18,10 @@ public class MainAlgorithm {
 	public void setCloneGroups(List<CloneLines> groups) {
 		this.groups = groups;
 	}
+	public void add (CloneLines lines){
+		groups.add(lines);
+	}
+	
 	public List<CloneLines> check(String file) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 		
@@ -40,6 +44,7 @@ public class MainAlgorithm {
 		/*for(int line : sortedDuplicates) {
 			for(int origStart : duplicateLines.getChain(line)) {
 				CloneLines clone = new CloneLines(line,origStart);
+				groups.add(clone);
 				
 				for(int nextLine : sortedDuplicates.tailSet(line+1)) {
 					if(nextLine == clone.curDupLine() 
@@ -83,34 +88,5 @@ public class MainAlgorithm {
 		int lineNo = 0;
 		while((line = bufferedReader.readLine()) != null)
 			fileLines.put(line, lineNo++);
-	}
-	public class CloneLines {
-		int origStartLine;
-		int dupStartLine;
-		int origGroupLength = 1;
-		int dupGroupLength = 1;
-		
-		public CloneLines(int origStartLine, int dupStartLine) {
-			this.origStartLine = origStartLine; 
-			this.dupStartLine = dupStartLine;
-			groups.add(this);
-		}
-		public void increment() {
-			origGroupLength++;
-			dupGroupLength++;	
-		}
-		public int curOrigLine() {
-			return origStartLine + origGroupLength;
-		}
-		public int curDupLine() {
-			return dupStartLine + dupGroupLength;
-		}
-		public String toString() { 
-			return (dupStartLine+1)+"-"+(dupStartLine+dupGroupLength) + ":"
-					+ (origStartLine+1)+"-"+(origStartLine+origGroupLength);
-		}
-		public int getLength() {
-			return origGroupLength;
-		}
 	}
 }

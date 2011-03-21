@@ -1,16 +1,11 @@
 package com.github.saniul.clonedetector;
 
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.Set;
-import java.util.List;
 import java.util.HashMap;
-import java.util.TreeSet;
-
-import com.github.saniul.clonedetector.MainAlgorithm.CloneLines;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
