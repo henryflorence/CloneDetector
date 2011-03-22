@@ -10,8 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sun.reflect.generics.reflectiveObjects.*;
-//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 import com.github.saniul.clonedetector.ChainedHashMap;
 

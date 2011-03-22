@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 
 public class ChainedHashMap<K,V> implements Map<K,V> {
 	private Map<K,List<V>> map = new HashMap<K,List<V>>();
