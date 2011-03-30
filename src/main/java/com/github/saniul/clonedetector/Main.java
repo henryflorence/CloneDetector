@@ -23,8 +23,8 @@ public class Main {
 		String line;
 		
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(processed));
-		while((line = bufferedReader.readLine()) != null)
-			System.out.println(line);
+		//while((line = bufferedReader.readLine()) != null)
+		//	System.out.println(line);
 		
 		List<CloneLines> cloneLines = null;
 		try {
@@ -32,12 +32,11 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		for(CloneLines cl:cloneLines) System.out.println(cl);
 		
-		cloneLines = normalizer.remap(cloneLines);
-		cloneLines = emptyLineRemover.remap(cloneLines);
-		//for(CloneLines cl:cloneLines){
-		//	System.out.println(cl);
-		//}
+		//cloneLines = normalizer.remap(cloneLines);
+		//cloneLines = emptyLineRemover.remap(cloneLines);
+		for(CloneLines cl:cloneLines)
+			if(cl.dupGroupLength > 6) System.out.println(cl);
+		
 	}
 }

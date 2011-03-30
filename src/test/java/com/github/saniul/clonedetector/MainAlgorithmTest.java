@@ -21,7 +21,7 @@ import com.github.saniul.clonedetector.MainAlgorithm;
 public class MainAlgorithmTest {
 	private MainAlgorithm algo;
 	private List<MainAlgorithm.DupLines> groups;
-	private Map<Integer,Integer> dupLines;
+	private ChainedHashMap<Integer,Integer> dupLines;
 	private Map<String, Integer> fileLines;
 	private List<String> lines;
 
@@ -30,7 +30,7 @@ public class MainAlgorithmTest {
 		algo = new MainAlgorithm();
 		groups = new ArrayList<MainAlgorithm.DupLines>();
 		algo.setCloneGroups(groups);
-		dupLines = new HashMap<Integer,Integer>();
+		dupLines = new ChainedHashMap<Integer,Integer>();
 		fileLines = new HashMap<String,Integer>();
 		lines = new LinkedList<String>();
 	}
@@ -68,7 +68,14 @@ public class MainAlgorithmTest {
 		List<MainAlgorithm.DupLines> cl = algo.findGroups(dupLines);
 		assertEquals(cl.size(),1);
 	}
-
+	@Test
+	public void testTwoOneLineGroups() {
+		dupLines.put(2,10);
+		dupLines.put(4,10);
+		List<MainAlgorithm.DupLines> cl = algo.findGroups(dupLines);
+		assertEquals(cl.size(),2);
+	}
+	
 	@Test
 	public void testTwoGroups() {
 		dupLines.put(2,10);
@@ -78,6 +85,7 @@ public class MainAlgorithmTest {
 
 		List<MainAlgorithm.DupLines> cl = algo.findGroups(dupLines);
 		assertEquals(cl.size(),2);
+		for(MainAlgorithm.DupLines dup : cl) System.out.println(dup.toCloneLines());
 	}
 
 	@Test
