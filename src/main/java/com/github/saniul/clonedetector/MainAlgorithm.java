@@ -68,7 +68,7 @@ public class MainAlgorithm {
 	}
 
 	private void findDuplicates(ChainedHashMap<String, Integer> fileLines,
-			ChainedHashMap<Integer, Integer> duplicateLines) {
+			ChainedMap<Integer, Integer> duplicateLines) {
 		for (String line : fileLines.keySet()) {
 			List<Integer> dups = fileLines.getChain(line);
 			if (dups.size() == 1) continue;

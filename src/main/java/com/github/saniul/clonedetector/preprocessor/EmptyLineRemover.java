@@ -12,10 +12,6 @@ import org.apache.commons.lang.StringUtils;
 
 public class EmptyLineRemover extends FileProcessor {
 
-	public EmptyLineRemover(File file) {
-		super(file);
-	}
-
 	@Override
 	public File process() {
 		try {

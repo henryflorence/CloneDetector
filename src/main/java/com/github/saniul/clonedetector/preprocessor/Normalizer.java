@@ -12,10 +12,6 @@ import org.apache.commons.lang.StringUtils;
 
 public class Normalizer extends FileProcessor {
 
-	public Normalizer(File file) {
-		super(file);
-	}
-
 	private final static String kwrds = "abstract|" + "assert|" + "boolean|"
 			+ "break|" + "byte|" + "case|" + "catch|" + "char|" + "class|"
 			+ "const|" + "continue|" + "default|" + "do|" + "double|" + "else|"
@@ -28,8 +24,9 @@ public class Normalizer extends FileProcessor {
 			+ "volatile|" + "while";
 	private final static String ops = "\\|\\||" + "&&|" + "<<|" + ">>|"
 			+ "\\+=|" + "\\-=|" + "\\/=|" + "\\*=|" + "\\+\\+|" + "\\-\\-|"
-			+ "=|" + "\\+|" + "\\-|" + "\\/|" + "\\*|" + "<|" + ">|" 
-			+ ">=|" + "<=|" + "&|" + ">>>|" + "^|" + "?:|" + "!=|" + "!|" + "%" ; //Added missing operators
+			+ "=|" + "\\+|" + "\\-|" + "\\/|" + "\\*|" + "<|" + ">|"
+			+ ">=|" + "<=|" + "&|" + ">>>|" + "\\^|"
+			+ ":|" + "\\?|" + "\\!=|" + "\\!|" + "%";
 
 	private final static String identifiers = "\\b(?!(?:" + kwrds
 			+ ")\\b)[_a-zA-Z][_a-zA-Z0-9]*\\b";
@@ -52,14 +49,7 @@ public class Normalizer extends FileProcessor {
 		result = result.replaceAll(numliterals, " NUMLIT ");
 		result = result.replaceAll(boolliterals, " BOOLLIT ");
 		result = result.replaceAll(nullliterals, " NULLLIT ");
-//		result = result.replaceAll("\\[", " LSQUARE ");
-//		result = result.replaceAll("\\]", " RSQUARE ");
-//		result = result.replaceAll("\\{", " LBRACE ");
-//		result = result.replaceAll("\\}", " RBRACE ");
-//		result = result.replaceAll("\\(", " LPAREN ");
-//		result = result.replaceAll("\\)", " RPAREN ");
 		result = result.replaceAll("\\s\\.\\s", " DOT ");
-		result = result.replaceAll(";", " SEMI ");
 		result = StringUtils.join(StringUtils.split(result), " ");
 		return result;
 	}

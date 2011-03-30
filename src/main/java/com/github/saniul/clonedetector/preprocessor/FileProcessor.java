@@ -18,7 +18,7 @@ public abstract class FileProcessor {
 	File originalFile;
 	File processedFile;
 
-	public FileProcessor(File originalFile) {
+	public void setFile (File originalFile) {
 		try {
 			this.originalFile = originalFile;
 			buildLineMap();
