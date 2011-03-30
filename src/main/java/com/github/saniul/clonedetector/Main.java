@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.github.saniul.clonedetector.preprocessor.FileProcessor;
 import com.github.saniul.clonedetector.preprocessor.LineMap;
+import com.github.saniul.clonedetector.preprocessor.MultiLineNormalizer;
 import com.github.saniul.clonedetector.preprocessor.Normalizer;
 import com.github.saniul.clonedetector.preprocessor.EmptyLineRemover;
 
@@ -18,31 +19,39 @@ import com.github.saniul.clonedetector.preprocessor.EmptyLineRemover;
  */
 public class Main {
 	private String[] inFiles;
+	private FileProcessor multiLineNormalizer;
 	private FileProcessor emptyLineRemover;
 	private FileProcessor normalizer;
 	private MainAlgorithm mainAlgorithm;
 	private LineMap lineMap;
 	
 	public Main() {
+		multiLineNormalizer = new MultiLineNormalizer();
 		emptyLineRemover = new EmptyLineRemover();
 		normalizer = new Normalizer();
 		mainAlgorithm = new MainAlgorithm();
 		
-		lineMap = new LineMap();	
+		lineMap = new LineMap();
+		multiLineNormalizer.setLineMap(lineMap);
 		emptyLineRemover.setLineMap(lineMap);
 		normalizer.setLineMap(lineMap);
 	}
 	public void run() throws IOException {
 		File original = new File("./testFiles/Test.java");
 		lineMap.buildLineMap(original);
-		emptyLineRemover.setFile(original);
+		
+		multiLineNormalizer.setFile(original);
+		multiLineNormalizer.process();
+		
+		normalizer.setFile(multiLineNormalizer.getProcessedFile());
+		normalizer.process();
+		
+		emptyLineRemover.setFile(normalizer.getProcessedFile());
 		emptyLineRemover.process();
 		
-		normalizer.setFile(emptyLineRemover.getProcessedFile());
-		normalizer.process();
-		File processed = normalizer.getProcessedFile();
+		File processed = emptyLineRemover.getProcessedFile();
 		
-//		displayFile(processed);
+		displayFile(processed);
 		List<CloneLines> cloneLines = mainAlgorithm.check(processed);
 		lineMap.remap(cloneLines);
 		

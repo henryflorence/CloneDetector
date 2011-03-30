@@ -30,11 +30,14 @@ public class LineMap {
 		lineMap.put(lineCount, new MutableInt(lineCount));
 	}
 
-	public void insertBlankLine(EmptyLineRemover emptyLineRemover, int lineNo) {
+	public void insertBlankLine(int lineNo) {
 		for (int l : lineMap.subMap(lineNo, lineMap.lastKey()).keySet())
 			lineMap.get(l).increment();
 	}
 
+	public void addAdditionalLine(int lineNo) {
+		
+	}
 	public void remap(List<CloneLines> inputList) {
 		for (CloneLines cloneLines : inputList)
 			cloneLines.remapLines(this);
