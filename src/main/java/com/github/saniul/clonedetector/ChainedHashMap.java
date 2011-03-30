@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.apache.commons.lang.NotImplementedException;
 
-public class ChainedHashMap<K,V> implements Map<K,V> {
+public class ChainedHashMap<K,V> implements ChainedMap<K, V> {
 	private Map<K,List<V>> map = new HashMap<K,List<V>>();
 	@Override
 	public void clear() {
@@ -35,6 +35,10 @@ public class ChainedHashMap<K,V> implements Map<K,V> {
 	public V get(Object arg0) {
 		throw new NotImplementedException();
 	}
+	/* (non-Javadoc)
+	 * @see com.github.saniul.clonedetector.ChainedMap#getChain(K)
+	 */
+	@Override
 	public List<V> getChain(K arg0) {
 		return map.get(arg0);
 	}
@@ -59,9 +63,17 @@ public class ChainedHashMap<K,V> implements Map<K,V> {
 		map.put(arg0,list);
 		return null;
 	}
+	/* (non-Javadoc)
+	 * @see com.github.saniul.clonedetector.ChainedMap#putChain(K, java.util.List)
+	 */
+	@Override
 	public void putChain(K arg0, List<V> list) {
 		map.put(arg0,list);
 	}
+	/* (non-Javadoc)
+	 * @see com.github.saniul.clonedetector.ChainedMap#addChain(K, java.util.List)
+	 */
+	@Override
 	public void addChain(K arg0, List<V> list) {
 		if(!map.containsKey(arg0)) {
 			putChain(arg0,list);
