@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.github.saniul.clonedetector.preprocessor.FileProcessor;
+import com.github.saniul.clonedetector.preprocessor.LineMap;
 import com.github.saniul.clonedetector.preprocessor.Normalizer;
 import com.github.saniul.clonedetector.preprocessor.EmptyLineRemover;
 
@@ -20,18 +21,26 @@ public class Main {
 	private FileProcessor emptyLineRemover;
 	private FileProcessor normalizer;
 	private MainAlgorithm mainAlgorithm;
+	private LineMap lineMap;
 	
 	public Main() {
 		emptyLineRemover = new EmptyLineRemover();
 		normalizer = new Normalizer();
 		mainAlgorithm = new MainAlgorithm();
+		
+		lineMap = new LineMap();	
+		emptyLineRemover.setLineMap(lineMap);
+		normalizer.setLineMap(lineMap);
 	}
 	public void run() throws IOException {
 		File original = new File("./testFiles/Test.java");
+		lineMap.buildLineMap(original);
 		emptyLineRemover.setFile(original);
+		emptyLineRemover.process();
 		
-		normalizer.setFile(emptyLineRemover.process());
-		File processed = normalizer.process();
+		normalizer.setFile(emptyLineRemover.getProcessedFile());
+		normalizer.process();
+		File processed = normalizer.getProcessedFile();
 		
 		displayFile(processed);
 		List<CloneLines> cloneLines = mainAlgorithm.check(processed);

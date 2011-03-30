@@ -55,27 +55,12 @@ public class Normalizer extends FileProcessor {
 	}
 
 	@Override
-	public File process() {
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(
-					originalFile));
-
-			BufferedWriter writer = new BufferedWriter(new FileWriter(
-					processedFile));
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				writer.write(normalizeLine(line));
-				writer.newLine();
-			}
-			reader.close();
-			writer.flush();
-			writer.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void doProcess() throws IOException {
+		String line = null;
+		while ((line = reader.readLine()) != null) {
+			writer.write(normalizeLine(line));
+			writer.newLine();
 		}
-		return processedFile;
 	}
 
 }
