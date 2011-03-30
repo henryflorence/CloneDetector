@@ -126,7 +126,8 @@ public class MainAlgorithm {
 		}
 		
 		public CloneLines toCloneLines() {
-			return new CloneLines(origStartLine, dupStartLine, origGroupLength, dupGroupLength);
+			return new CloneLines(origStartLine, dupStartLine, 
+									curOrigLine()-1, curDupLine()-1, getLength());
 		}
 	}
 }

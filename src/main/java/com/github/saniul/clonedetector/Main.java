@@ -42,13 +42,12 @@ public class Main {
 		normalizer.process();
 		File processed = normalizer.getProcessedFile();
 		
-		displayFile(processed);
+//		displayFile(processed);
 		List<CloneLines> cloneLines = mainAlgorithm.check(processed);
+		lineMap.remap(cloneLines);
 		
-		//cloneLines = normalizer.remap(cloneLines);
-		//cloneLines = emptyLineRemover.remap(cloneLines);
 		for(CloneLines cl:cloneLines)
-			if(cl.dupGroupLength > 6) System.out.println(cl);
+			if(cl.getLength() > 6) System.out.println(cl);
 		
 	}
 	public void processArguments(String[] args) {

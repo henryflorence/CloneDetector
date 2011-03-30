@@ -1,45 +1,50 @@
 package com.github.saniul.clonedetector;
 
+import com.github.saniul.clonedetector.preprocessor.LineMap;
+
 public class CloneLines {
-	int origStartLine;
-	int dupStartLine;
-	int origGroupLength = 1;
-	int dupGroupLength = 1;
+	public int origStartLine;
+	public int dupStartLine;
+	public int origEndLine;
+	public int dupEndLine;
+	private int dupLength; // before remapping
 	
-	public CloneLines(int origStartLine, int dupStartLine) {
+	public CloneLines(int origStartLine, int dupStartLine, 
+					int origEndLine, int dupEndLine, int dupLength) {
 		this.origStartLine = origStartLine; 
 		this.dupStartLine = dupStartLine;
-	}
-	public CloneLines(int origStartLine, int dupStartLine, int origGroupLength, int dupGroupLength) {
-		this.origStartLine = origStartLine; 
-		this.dupStartLine = dupStartLine;
-		this.origGroupLength = origGroupLength;
-		this.dupGroupLength = dupGroupLength;
-	}
-	public void setLength(int length){
-		origGroupLength=length;
-		dupGroupLength=length;
+		this.origEndLine = origEndLine;
+		this.dupEndLine = dupEndLine;
+		this.dupLength = dupLength;
 	}
 	
 	public int getOrigStartLine(){
 		return origStartLine;
 	}
-	
 	public int getDupStartLine(){
 		return dupStartLine;
 	}
-	public int curOrigLine() {
-		return origStartLine + origGroupLength;
+	public int getOrigEndLine() {
+		return origEndLine;
 	}
-	public int curDupLine() {
-		return dupStartLine + dupGroupLength;
+	public int getDupEndLine() {
+		return dupEndLine;
 	}
 	public String toString() { 
-		return (dupStartLine+1)+"-"+(dupStartLine+dupGroupLength) + ":"
-				+ (origStartLine+1)+"-"+(origStartLine+origGroupLength);
+		return (dupStartLine+1)+"-"+(dupEndLine+1)+":"
+				+ (origStartLine+1)+"-"+(origEndLine+1);
 	}
 
 	public int getLength() {
-		return origGroupLength;
+		return dupLength;
+	}
+	public void remapLines(LineMap lineMap) {
+		origStartLine = lineMap.lineMap.get(getOrigStartLine())
+				.intValue();
+		dupStartLine = lineMap.lineMap.get(getDupStartLine())
+				.intValue();
+		
+		dupEndLine = lineMap.lineMap.get(getDupEndLine()).intValue();
+		origEndLine = lineMap.lineMap.get(getOrigEndLine()).intValue();
 	}
 }
