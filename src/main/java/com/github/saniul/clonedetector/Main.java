@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.saniul.clonedetector.preprocessor.BasicNormalizer;
 import com.github.saniul.clonedetector.preprocessor.FileProcessor;
 import com.github.saniul.clonedetector.preprocessor.LineMap;
 import com.github.saniul.clonedetector.preprocessor.MultiLineNormalizer;
@@ -26,27 +27,31 @@ public class Main {
 	private MainAlgorithm mainAlgorithm;
 	private LineMap lineMap;
 	private CommandArgs cmdArgs = new CommandArgs();
+	private FileProcessor basicNormalizer;
 
 	public Main() {
 		multiLineNormalizer = new MultiLineNormalizer();
 		emptyLineRemover = new EmptyLineRemover();
 		normalizer = new Normalizer();
+		basicNormalizer = new BasicNormalizer();
 		mainAlgorithm = new MainAlgorithm();
 		
 		lineMap = new LineMap();
 		multiLineNormalizer.setLineMap(lineMap);
 		emptyLineRemover.setLineMap(lineMap);
 		normalizer.setLineMap(lineMap);
+		basicNormalizer.setLineMap(lineMap);
 		
 		multiLineNormalizer.setCommandArgs(cmdArgs);
 		emptyLineRemover.setCommandArgs(cmdArgs);
 		normalizer.setCommandArgs(cmdArgs);
+		basicNormalizer.setCommandArgs(cmdArgs);
 	}
 	public void run() throws IOException {
 		File current = new File(inFiles.get(0));
 		lineMap.buildLineMap(current);
 		
-		if(cmdArgs.codeMode) {
+		if(cmdArgs.codeMode || cmdArgs.javaMode) {
 			multiLineNormalizer.setFile(current);
 			multiLineNormalizer.process();
 			current = multiLineNormalizer.getProcessedFile();
@@ -56,13 +61,13 @@ public class Main {
 			normalizer.setFile(current);
 			normalizer.process();
 			current = normalizer.getProcessedFile();
-		} /*else if(cmdArgs.codeMode) {
+		} else if(cmdArgs.codeMode) {
 			basicNormalizer.setFile(current);
 			basicNormalizer.process();
-			current = normalizer.getProcessedFile();
-		}*/
+			current = basicNormalizer.getProcessedFile();
+		}
 		
-		if(cmdArgs.codeMode) {
+		if(cmdArgs.codeMode || cmdArgs.javaMode) {
 			emptyLineRemover.setFile(current);
 			emptyLineRemover.process();
 			current = emptyLineRemover.getProcessedFile();
@@ -92,9 +97,15 @@ public class Main {
 	public void processArguments(String[] args) {
 		for(String arg : args) {
 			if("-d".equals(arg)) cmdArgs.displayProcessed = true;
+			else if("-t".equals(arg)) {
+				cmdArgs.textMode = true;
+				cmdArgs.javaMode = false;
+			}
+			else if("-c".equals(arg)) {
+				cmdArgs.codeMode = true;
+				cmdArgs.javaMode = false;
+			}
 			else if("-j".equals(arg)) cmdArgs.javaMode = true;
-			else if("-c".equals(arg)) cmdArgs.codeMode = true;
-			else if("-t".equals(arg)) cmdArgs.textMode = true;
 			else if("-m".equals(arg)) cmdArgs.minHash = true;
 			else if("-h".equals(arg)) printUsage();
 			else if(arg.matches("-l\\d+")) 
@@ -131,8 +142,8 @@ public class Main {
 		public boolean minHash = false;
 		public boolean displayProcessed = false;
 		public boolean javaMode = true;
-		public boolean codeMode = true;
-		public boolean textMode = true;
+		public boolean codeMode = false;
+		public boolean textMode = false;
 		public int minLines = 6;
 	}
 }

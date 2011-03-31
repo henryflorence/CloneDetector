@@ -43,7 +43,6 @@ public class Normalizer extends FileProcessor {
 		result = result.replaceAll(keywords, " KEYWRD ");
 		result = result.replaceAll(operators, " OP ");
 		result = result.replaceAll(numliterals, " NUMLIT ");
-		result = result.replaceAll("\\.", " DOT ");
 		result = StringUtils.join(StringUtils.split(result), " ");
 		return result;
 	}
