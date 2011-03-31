@@ -84,7 +84,22 @@ public class ChainedHashMapTest {
 		assertEquals(chain2.get(0),"one");
 		assertEquals(chain2.get(1),"two");
 	}
-	
+	@Test
+	public void testCopyAddChain() {
+		List<String> chain = new LinkedList<String>();
+		chain.add("one");
+		chain.add("two");
+		
+		map.addChain(1,chain);
+		assertEquals(map.size(),1);
+		
+		List<String> chain2 = new LinkedList<String>();
+		chain.add("three");
+		chain.add("four");
+		
+		map.addChain(1,chain2);
+		assertEquals(map.size(),1);
+	}
 	@Test(expected=NotImplementedException.class)
     public void testStub1() {
         map.containsKey(null);

@@ -20,7 +20,7 @@ public class MultiLineNormalizer extends FileProcessor {
 					(line.charAt(i) == '{' || line.charAt(i) == '}')) {
 					out.append('\n');
 					curLength = 0;
-					//lineMap.insertBlankLine(curLineCount);
+					lineMap.addAdditionalLine(curLineCount++);
 				}
 				out.append(line.charAt(i));
 				curLength++;
