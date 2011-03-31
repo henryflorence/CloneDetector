@@ -41,32 +41,7 @@ public class Normalizer extends FileProcessor {
 		result = result.replaceAll("true|false", " BOOLLIT ");
 		result = result.replaceAll("null", " NULLLIT ");
 		result = result.replaceAll(keywords, " KEYWRD ");
-		//result = result.replaceAll(operators, " OP ");
-		//Extended list of OPs
-		result = result.replaceAll("(\\|\\||\\|)", " OR ");
-		result = result.replaceAll("(&&|&)", " AND ");
-		result = result.replaceAll("(\\^)", " XOR ");
-		result = result.replaceAll("(<<)", " LSHIFT ");
-		result = result.replaceAll("(>>)", " RSHIFT ");
-		result = result.replaceAll("(>>>)", " USHIFT ");
-		result = result.replaceAll("(\\+\\+)", " INCREMENT ");
-		result = result.replaceAll("(\\-\\-)", " DECREMENT ");
-		result = result.replaceAll("(\\+)", " PLUS ");
-		result = result.replaceAll("(\\-)", " MINUS ");
-		result = result.replaceAll("(\\/)", " DIV ");
-		result = result.replaceAll("(\\*)", " TIMES ");
-		result = result.replaceAll("(%)", " MOD ");
-		result = result.replaceAll("(<)", " LT ");
-		result = result.replaceAll("(>)", " GT ");
-		result = result.replaceAll("(<=)", " LEQ ");
-		result = result.replaceAll("(>=)", " GEQ ");
-		result = result.replaceAll("(:)", " COND-THEN ");
-		result = result.replaceAll("(\\?)", " COND-ELSE ");
-		result = result.replaceAll("(==)", " EQUAL ");
-		result = result.replaceAll("(\\!=)", " NOT-EQUAL ");
-		result = result.replaceAll("(\\!)", " NOT ");
-		result = result.replaceAll("(=)", " ASSIGN ");
-		//End of extended list
+		result = result.replaceAll(operators, " OP ");
 		result = result.replaceAll(numliterals, " NUMLIT ");
 		result = result.replaceAll("\\.", " DOT ");
 		result = StringUtils.join(StringUtils.split(result), " ");

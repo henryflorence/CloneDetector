@@ -14,15 +14,17 @@ import java.util.Iterator;
 
 public class MainAlgorithm {
 	private List<DupLines> groups;
-	private boolean minHash;
+	private boolean minHash = false;
 	
 	public void setCloneGroups(List<DupLines> groups) {
 		this.groups = groups;
 	}
 
-	public List<CloneLines> check(File file, boolean minHash) throws IOException {
-		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+	public void setMinHash(boolean minHash) {
 		this.minHash = minHash;
+	}
+	public List<CloneLines> check(File file) throws IOException {
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 		
 		ChainedHashMap<String, Integer> fileLines = new ChainedHashMap<String, Integer>();
 		ChainedHashMap<String, Integer> minHashLines = new ChainedHashMap<String, Integer>();

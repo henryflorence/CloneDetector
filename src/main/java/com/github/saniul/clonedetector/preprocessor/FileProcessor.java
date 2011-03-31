@@ -11,6 +11,8 @@ import java.util.TreeMap;
 
 import org.apache.commons.lang.mutable.MutableInt;
 
+import com.github.saniul.clonedetector.Main.CommandArgs;
+
 
 public abstract class FileProcessor {
 	protected LineMap lineMap;
@@ -18,6 +20,7 @@ public abstract class FileProcessor {
 	protected File processedFile;
 	protected BufferedReader reader;
 	protected BufferedWriter writer;
+	protected CommandArgs cmdArgs;
 
 	public void setFile (File originalFile) throws IOException {
 		this.originalFile = originalFile;
@@ -46,5 +49,9 @@ public abstract class FileProcessor {
 		reader.close();
 		writer.flush();
 		writer.close();
+	}
+
+	public void setCommandArgs(CommandArgs cmdArgs) {
+		this.cmdArgs = cmdArgs;
 	}
 }
