@@ -76,7 +76,7 @@ public class MainAlgorithm {
 			for (int i = 0; i < dups.size(); i++) {
 				List<Integer> items = new LinkedList<Integer>();
 				if(i > 0) items.addAll(dups.subList(0, i));
-				if(i < dups.size() - 2) items.addAll(dups.subList(i + 1, dups.size()));
+				if(i < dups.size() - 1) items.addAll(dups.subList(i + 1, dups.size()));
 				
 				duplicateLines.addChain(dups.get(i), items);
 			}

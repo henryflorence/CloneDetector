@@ -12,6 +12,21 @@ public class MultiLineNormalizer extends FileProcessor {
 		String line = null;
 		int curLineCount = 0;
 		while ((line = reader.readLine()) != null) {
+			StringBuffer out = new StringBuffer("");
+			int curLength = 0;
+			
+			for(int i = 0; i < line.length(); i++) {
+				if(curLength > 0 && 
+					(line.charAt(i) == '{' || line.charAt(i) == '}')) {
+					out.append('\n');
+					curLength = 0;
+					//lineMap.insertBlankLine(curLineCount);
+				}
+				out.append(line.charAt(i));
+				curLength++;
+			}
+			line = out.toString();
+			
 			if (line.contains("/*")) {
 				insideComment = true;
 				writer.write(line.substring(0,line.indexOf("/*")));
