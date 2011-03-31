@@ -31,6 +31,15 @@
   
   <build>
 	  <plugins>
+		  <plugin>
+	        <artifactId>maven-assembly-plugin</artifactId>
+	        <configuration>
+	          <descriptors>
+	            <descriptor>src/assembly/dist.xml</descriptor>
+	          </descriptors>
+	        </configuration>
+	      </plugin>
+	  
 	    <plugin>
 		    <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-jar-plugin</artifactId>
@@ -38,6 +47,8 @@
 			    <archive>
 				    <manifest>
 					    <mainClass>com.github.saniul.clonedetector.Main</mainClass>
+					    <addClasspath>true</addClasspath>
+              			<classpathPrefix>lib</classpathPrefix>
 				    </manifest>
 			    </archive>
 		    </configuration>

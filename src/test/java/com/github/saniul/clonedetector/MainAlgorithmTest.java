@@ -99,7 +99,6 @@ public class MainAlgorithmTest {
 		assertEquals((int)fileLines.get("one"), 0);
 		assertEquals((int)fileLines.get("two"), 1);
 	}
-
 	public class TestReader extends BufferedReader {
 		Iterator<String> iterator;
 

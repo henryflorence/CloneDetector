@@ -39,12 +39,9 @@ public class CloneLines {
 		return dupLength;
 	}
 	public void remapLines(LineMap lineMap) {
-		origStartLine = lineMap.lineMap.get(getOrigStartLine())
-				.intValue();
-		dupStartLine = lineMap.lineMap.get(getDupStartLine())
-				.intValue();
-		
-		dupEndLine = lineMap.lineMap.get(getDupEndLine()).intValue();
-		origEndLine = lineMap.lineMap.get(getOrigEndLine()).intValue();
+		origStartLine = lineMap.translate(getOrigStartLine());
+		dupStartLine = lineMap.translate(getDupStartLine());
+		dupEndLine = lineMap.translate(getDupEndLine());
+		origEndLine = lineMap.translate(getOrigEndLine());
 	}
 }
