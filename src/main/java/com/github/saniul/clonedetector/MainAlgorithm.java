@@ -14,19 +14,28 @@ import java.util.Iterator;
 
 public class MainAlgorithm {
 	private List<DupLines> groups;
-
+	private boolean minHash;
+	
 	public void setCloneGroups(List<DupLines> groups) {
 		this.groups = groups;
 	}
 
-	public List<CloneLines> check(File file) throws IOException {
+	public List<CloneLines> check(File file, boolean minHash) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-
+		this.minHash = minHash;
+		
 		ChainedHashMap<String, Integer> fileLines = new ChainedHashMap<String, Integer>();
-		collateLines(bufferedReader, fileLines);
-
+		ChainedHashMap<String, Integer> minHashLines = new ChainedHashMap<String, Integer>();
 		ChainedHashMap<Integer, Integer> duplicateLines = new ChainedHashMap<Integer, Integer>();
-		findDuplicates(fileLines, duplicateLines);
+		
+		if (minHash) {
+			// running with minHash option
+			collateLines(bufferedReader, fileLines, minHashLines);
+			findDuplicates(fileLines, duplicateLines, minHashLines);
+		} else {
+			collateLines(bufferedReader, fileLines);
+			findDuplicates(fileLines, duplicateLines);
+		}
 
 		List<DupLines> lines = findGroups(duplicateLines);
 		
@@ -72,22 +81,55 @@ public class MainAlgorithm {
 		for (String line : fileLines.keySet()) {
 			List<Integer> dups = fileLines.getChain(line);
 			if (dups.size() == 1) continue;
-			
+
 			for (int i = 0; i < dups.size(); i++) {
 				List<Integer> items = new LinkedList<Integer>();
 				if(i > 0) items.addAll(dups.subList(0, i));
-				if(i < dups.size() - 2) items.addAll(dups.subList(i + 1, dups.size()));
+				if(i <= dups.size() - 2) items.addAll(dups.subList(i + 1, dups.size()));
 				
 				duplicateLines.addChain(dups.get(i), items);
 			}
 		}
-		/*for(int i : new TreeSet<Integer>(duplicateLines.keySet())) {
+		/* for(int i : new TreeSet<Integer>(duplicateLines.keySet())) {
 			System.out.print(i+" >");
 			for(int j : duplicateLines.getChain(i)) System.out.print(" "+j);
 			System.out.println("");
-		}*/
+		} */
 	}
 
+	private void findDuplicates(ChainedHashMap<String, Integer> fileLines,
+			ChainedMap<Integer, Integer> duplicateLines, 
+			ChainedHashMap<String, Integer> minHashLines) {		
+		String minHashCodeLine;
+		List<Integer> dups = new LinkedList<Integer>();
+		for (String line : fileLines.keySet()) {
+			dups.clear();
+			minHashCodeLine = computeMinHashCode(line);
+			
+			for (String minHashCode : minHashLines.keySet()){
+				// if Hamming Distance <= 1, consider as clone.
+				if (getHammingDistance(minHashCodeLine,minHashCode) <= 1) {
+					dups.addAll(minHashLines.getChain(minHashCode));
+				}
+			}
+			
+			if (dups.size() == 1) continue;
+			
+			for (int i = 0; i < dups.size(); i++) {
+				List<Integer> items = new LinkedList<Integer>();
+				if(i > 0) items.addAll(dups.subList(0, i));
+				if(i <= dups.size() - 2) items.addAll(dups.subList(i + 1, dups.size()));
+				
+				duplicateLines.addChain(dups.get(i), items);
+			}
+		}
+		/* for(int i : new TreeSet<Integer>(duplicateLines.keySet())) {
+			System.out.print(i+" >");
+			for(int j : duplicateLines.getChain(i)) System.out.print(" "+j);
+			System.out.println("");
+		} */
+	}
+	
 	public void collateLines(BufferedReader bufferedReader,
 			Map<String, Integer> fileLines) throws IOException {
 		String line;
@@ -95,6 +137,70 @@ public class MainAlgorithm {
 		while ((line = bufferedReader.readLine()) != null)
 			fileLines.put(line, lineNo++);
 	}
+	
+	public void collateLines(BufferedReader bufferedReader,
+			Map<String, Integer> fileLines, Map<String, Integer> minHashLines)
+			throws IOException {
+		String line;
+		String minHashCode;
+		int lineNo = 0;
+		while ((line = bufferedReader.readLine()) != null) {
+			fileLines.put(line, lineNo);
+			/* A minHash code is string made of 36 binary characters.
+			 * Each binary code represents a normalized token term.
+			 * If a odd number of X token term appeared in the line,
+			 * its binary code will be represented by 1.
+			 * Otherwise, its binary code will be represented by 0. 
+			 */
+			minHashCode = computeMinHashCode(line);
+			/* minHashLine is a ChainedHashedMap consisting of
+			 * minHashCode(key), lineNo(value) pairs 
+			 */
+			minHashLines.put(minHashCode, lineNo++);
+		}
+	}
+
+	private String computeMinHashCode(String line) {
+		String[] terms = {"ID","KEYWRD","OR","AND","XOR","LSHIFT",
+						"RSHIFT","USHIFT","INCREMENT","DECREMENT",
+						"PLUS","MINUS","DIV","TIMES","MOD","LT",
+						"GT","LEQ","GEQ","COND-THEN","COND-ELSE",
+						"EQUAL","NOT-EQUAL","NOT","ASSIGN","NUMLIT",
+						"BOOLLIT","NULLLIT","DOT","[","]","{","}",
+						"(",")",";"};
+		String minHashCode = "";
+		for (String term: terms) {
+			minHashCode = minHashCode + countAppearance(line,term);
+		}
+		return minHashCode;
+	}
+	
+	private String countAppearance(String line, String term) {
+		String testLine = line;
+		int index = testLine.indexOf(term);
+		int count = 0;
+		while (index != -1) {
+		    count++;
+		    testLine = testLine.substring(index + 1);
+		    index = testLine.indexOf(term);
+		}
+		if ((count % 2) == 0) {
+			// even count
+			return "0";
+		} else {
+			// odd count
+			return "1";
+		}
+	}
+	
+    private int getHammingDistance(String minHashCodeLine, String minHashCode) {
+        int counter = 0;
+        
+        for (int i = 0; i < minHashCodeLine.length(); i++) {
+        	if (minHashCodeLine.charAt(i) != minHashCode.charAt(i)) counter++;
+        }
+        return counter;
+    }
 
 	public class DupLines {
 		int origStartLine;

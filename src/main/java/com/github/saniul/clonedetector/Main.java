@@ -24,6 +24,7 @@ public class Main {
 	private FileProcessor normalizer;
 	private MainAlgorithm mainAlgorithm;
 	private LineMap lineMap;
+	private boolean minHash;
 	
 	public Main() {
 		multiLineNormalizer = new MultiLineNormalizer();
@@ -35,6 +36,7 @@ public class Main {
 		multiLineNormalizer.setLineMap(lineMap);
 		emptyLineRemover.setLineMap(lineMap);
 		normalizer.setLineMap(lineMap);
+		minHash = true;
 	}
 	public void run() throws IOException {
 		File original = new File("./testFiles/Test.java");
@@ -52,16 +54,23 @@ public class Main {
 		File processed = emptyLineRemover.getProcessedFile();
 		
 		displayFile(processed);
-		List<CloneLines> cloneLines = mainAlgorithm.check(processed);
+		List<CloneLines> cloneLines = mainAlgorithm.check(processed,minHash);
 		lineMap.remap(cloneLines);
 		
 		for(CloneLines cl:cloneLines)
 			if(cl.getLength() > 6) System.out.println(cl);
 		
 	}
+	
 	public void processArguments(String[] args) {
-		
+		int pos = 0;
+		while (pos < args.length) {
+			if (args[pos].equals("-m") || args[pos].equals("--minHash")) {
+				minHash = true;}
+			pos++;
+		}
 	}
+	
 	public static void main(String[] args) throws IOException {
 		try {
 			Main instance = new Main();
@@ -71,6 +80,7 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
+	
 	private void displayFile(File processed) {
 		String line;
 		BufferedReader bufferedReader;

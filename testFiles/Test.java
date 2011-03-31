@@ -10,7 +10,7 @@ class Test {
         int n = 0;
         double z = 1.0f;        
         for(n = 0; n < 10; n++) {
-            z += 1.0f;
+            z = z + 1.0f;
         }
     }
     public void method3() {
