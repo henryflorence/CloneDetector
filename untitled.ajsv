@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram style="highlightAbstractClassesDiagramStyle" version="1.7.3.v20110116-2128">
+        <class className="com.github.saniul.clonedetector.Main" project="CloneDetector" xLocation="-188" yLocation="-247"/>
+        <class className="com.github.saniul.clonedetector.ChainedHashMap" project="CloneDetector" xLocation="-642" yLocation="60"/>
+        <class className="com.github.saniul.clonedetector.ChainedMap" project="CloneDetector" xLocation="-570" yLocation="-252"/>
+        <class className="com.github.saniul.clonedetector.MainAlgorithm" project="CloneDetector" xLocation="750" yLocation="-396"/>
+        <class className="com.github.saniul.clonedetector.CloneLines" project="CloneDetector" xLocation="769" yLocation="62"/>
+        <class className="com.github.saniul.clonedetector.preprocessor.EmptyLineRemover" project="CloneDetector" xLocation="280" yLocation="299"/>
+        <class className="com.github.saniul.clonedetector.preprocessor.Normalizer" project="CloneDetector" xLocation="-416" yLocation="484"/>
+        <class className="com.github.saniul.clonedetector.preprocessor.MultiLineNormalizer" project="CloneDetector" xLocation="-149" yLocation="49"/>
+        <class className="com.github.saniul.clonedetector.preprocessor.FileProcessor" project="CloneDetector" xLocation="52" yLocation="528"/>
+        <class className="com.github.saniul.clonedetector.preprocessor.LineMap" project="CloneDetector" xLocation="617" yLocation="530"/>
+    </diagram>
+</ajsv>

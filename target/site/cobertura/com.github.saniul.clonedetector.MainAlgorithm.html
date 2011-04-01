@@ -1,0 +1,689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Coverage Report</title>
+<link title="Style" type="text/css" rel="stylesheet" href="css/main.css"/>
+<script type="text/javascript" src="js/popup.js"></script>
+</head>
+<body>
+<h5>Coverage Report - com.github.saniul.clonedetector.MainAlgorithm</h5>
+<div class="separator">&nbsp;</div>
+<table class="report">
+<thead><tr>  <td class="heading">Classes in this File</td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Line Coverage</a></td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Branch Coverage</a></td>  <td class="heading" width="10%"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Complexity</a></td></tr></thead>
+  <tr><td class="text"><a href="com.github.saniul.clonedetector.MainAlgorithm.html">MainAlgorithm</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>67%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="67"></td><td class="uncovered" width="32"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>54%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="53"></td><td class="uncovered" width="46"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">0.0;</span>0</td></tr>
+</table>
+<div class="separator">&nbsp;</div>
+<table cellspacing="0" cellpadding="0" class="src">
+<tr>
+  <td class="numLine">&nbsp;1</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">package</span> com.github.saniul.clonedetector;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;2</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;3</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.io.BufferedReader;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;4</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.io.File;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;5</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.io.FileReader;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;6</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.io.IOException;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;7</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.HashMap;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;8</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.LinkedList;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;9</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.List;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;10</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.Map;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;11</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.SortedSet;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;12</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.TreeSet;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;13</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.Iterator;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;14</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;15</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> MainAlgorithm {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;16</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> List&lt;DupLines&gt; groups;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;17</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;18</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">void</span> setCloneGroups(List&lt;DupLines&gt; groups) {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;19</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">this</span>.groups = groups;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;20</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;21</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;22</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> List&lt;CloneLines&gt; check(File file) <span class="keyword">throws</span> IOException {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;23</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(file));</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;24</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;25</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                ChainedHashMap&lt;String, Integer&gt; fileLines = <span class="keyword">new</span> ChainedHashMap&lt;String, Integer&gt;();</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;26</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                collateLines(bufferedReader, fileLines);</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;27</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;28</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                ChainedHashMap&lt;Integer, Integer&gt; duplicateLines = <span class="keyword">new</span> ChainedHashMap&lt;Integer, Integer&gt;();</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;29</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                findDuplicates(fileLines, duplicateLines);</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;30</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;31</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                List&lt;DupLines&gt; lines = findGroups(duplicateLines);</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;32</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                </pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;33</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                List&lt;CloneLines&gt; cloneLines = <span class="keyword">new</span> LinkedList&lt;CloneLines&gt;();</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;34</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">for</span>(DupLines line : lines) cloneLines.add(line.toCloneLines());</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;35</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                </pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;36</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">return</span> cloneLines;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;37</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;38</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;39</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> List&lt;DupLines&gt; findGroups(ChainedHashMap&lt;Integer, Integer&gt; duplicateLines) {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;40</td>
+  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">if</span> (duplicateLines.keySet().size() &lt; 2)</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;41</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;                        <span class="keyword">return</span> <span class="keyword">new</span> LinkedList&lt;DupLines&gt;();</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;42</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;43</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                SortedSet&lt;Integer&gt; sortedDuplicates = <span class="keyword">new</span> TreeSet&lt;Integer&gt;(</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;44</td>
+  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="src"><pre class="src">&nbsp;                                duplicateLines.keySet());</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;45</td>
+  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="src"><pre class="src">&nbsp;                groups = <span class="keyword">new</span> LinkedList&lt;DupLines&gt;();</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;46</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                </pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;47</td>
+  <td class="nbHitsCovered">&nbsp;42</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">for</span>(<span class="keyword">int</span> line : sortedDuplicates) {</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;48</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                        <span class="comment">// iterate forward creating groups for all duplicates at this line</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;49</td>
+  <td class="nbHitsCovered">&nbsp;63</td>
+  <td class="src"><pre class="src">&nbsp;                        <span class="keyword">for</span>(<span class="keyword">int</span> lineHit : duplicateLines.getChain(line)) {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;50</td>
+  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="src"><pre class="src">&nbsp;                                DupLines clone = <span class="keyword">new</span> DupLines(lineHit, line);</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;51</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                <span class="comment">//System.out.println("line: "+line+", lineHit: "+lineHit);</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;52</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                </pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;53</td>
+  <td class="nbHitsCovered">&nbsp;39</td>
+  <td class="src"><pre class="src">&nbsp;                                <span class="keyword">for</span> (<span class="keyword">int</span> posLine : sortedDuplicates.tailSet(line+1)) {</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;54</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                        <span class="comment">//System.out.println("--&gt;"+posLine+", "+clone.curDupLine());</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;55</td>
+  <td class="nbHitsCovered">&nbsp;15</td>
+  <td class="src"><pre class="src">&nbsp;                                        <span class="keyword">if</span> (posLine == clone.curDupLine()</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;56</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="src"><pre class="src">&nbsp;                                                        &amp;&amp; duplicateLines.getChain(posLine).contains(clone.curOrigLine())) {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;57</td>
+  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="src"><pre class="src">&nbsp;                                                duplicateLines.getChain(posLine).remove((Integer)clone.curOrigLine());</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;58</td>
+  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="src"><pre class="src">&nbsp;                                                clone.increment();</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;59</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                <span class="comment">//System.out.println("oh yeah");</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;60</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                        } <span class="keyword">else</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;61</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                <span class="keyword">break</span>;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;62</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;63</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;64</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;65</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="comment">//for(DupLines dup : groups) System.out.println(dup.toCloneLines());</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;66</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                </pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;67</td>
+  <td class="nbHitsCovered">&nbsp;9</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">return</span> groups;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;68</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;69</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;70</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">private</span> <span class="keyword">void</span> findDuplicates(ChainedHashMap&lt;String, Integer&gt; fileLines,</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;71</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                        ChainedMap&lt;Integer, Integer&gt; duplicateLines) {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;72</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">for</span> (String line : fileLines.keySet()) {</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;73</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                        List&lt;Integer&gt; dups = fileLines.getChain(line);</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;74</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                        <span class="keyword">if</span> (dups.size() == 1) <span class="keyword">continue</span>;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;75</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                        </pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;76</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; dups.size(); i++) {</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;77</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                List&lt;Integer&gt; items = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;78</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                <span class="keyword">if</span>(i &gt; 0) items.addAll(dups.subList(0, i));</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;79</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                <span class="keyword">if</span>(i &lt; dups.size() - 2) items.addAll(dups.subList(i + 1, dups.size()));</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;80</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                </pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;81</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                duplicateLines.addChain(dups.get(i), items);</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;82</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;83</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;84</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="comment">/*for(int i : new TreeSet&lt;Integer&gt;(duplicateLines.keySet())) {</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;85</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">                        System.out.print(i+" &gt;");</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;86</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">                        for(int j : duplicateLines.getChain(i)) System.out.print(" "+j);</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;87</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">                        System.out.println("");</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;88</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">                }*/</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;89</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        }</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;90</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;91</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">void</span> collateLines(BufferedReader bufferedReader,</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;92</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                        Map&lt;String, Integer&gt; fileLines) <span class="keyword">throws</span> IOException {</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;93</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                String line;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;94</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> lineNo = 0;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;95</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="keyword">null</span>)</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;96</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;                        fileLines.put(line, lineNo++);</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;97</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;98</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;99</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">class</span> DupLines {</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;100</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> origStartLine;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;101</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> dupStartLine;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;102</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> origGroupLength = 1;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;103</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">int</span> dupGroupLength = 1;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;104</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;105</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">public</span> DupLines(<span class="keyword">int</span> origStartLine, <span class="keyword">int</span> dupStartLine) {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;106</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                        <span class="keyword">this</span>.origStartLine = origStartLine;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;107</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                        <span class="keyword">this</span>.dupStartLine = dupStartLine;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;108</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                        groups.add(<span class="keyword">this</span>);</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;109</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;110</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;111</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">public</span> <span class="keyword">void</span> increment() {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;112</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="src"><pre class="src">&nbsp;                        origGroupLength++;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;113</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="src"><pre class="src">&nbsp;                        dupGroupLength++;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;114</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="src"><pre class="src">&nbsp;                }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;115</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;116</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">public</span> <span class="keyword">int</span> curOrigLine() {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;117</td>
+  <td class="nbHitsCovered">&nbsp;39</td>
+  <td class="src"><pre class="src">&nbsp;                        <span class="keyword">return</span> origStartLine + origGroupLength;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;118</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;119</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;120</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">public</span> <span class="keyword">int</span> curDupLine() {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;121</td>
+  <td class="nbHitsCovered">&nbsp;33</td>
+  <td class="src"><pre class="src">&nbsp;                        <span class="keyword">return</span> dupStartLine + dupGroupLength;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;122</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;123</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;124</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">public</span> <span class="keyword">int</span> getLength() {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;125</td>
+  <td class="nbHitsCovered">&nbsp;18</td>
+  <td class="src"><pre class="src">&nbsp;                        <span class="keyword">return</span> origGroupLength;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;126</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;127</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                </pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;128</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">public</span> CloneLines toCloneLines() {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;129</td>
+  <td class="nbHitsCovered">&nbsp;24</td>
+  <td class="src"><pre class="src">&nbsp;                        <span class="keyword">return</span> <span class="keyword">new</span> CloneLines(origStartLine, dupStartLine, </pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;130</td>
+  <td class="nbHitsCovered">&nbsp;12</td>
+  <td class="src"><pre class="src">&nbsp;                                                                        curOrigLine()-1, curDupLine()-1, getLength());</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;131</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;132</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;133</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;}</pre></td>
+</tr>
+</table>
+<div class="footer">
+Reports generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a>.
+</div>
+</body>
+</html>
