@@ -11,6 +11,7 @@ import java.util.List;
 import com.github.saniul.clonedetector.preprocessor.BasicNormalizer;
 import com.github.saniul.clonedetector.preprocessor.FileProcessor;
 import com.github.saniul.clonedetector.preprocessor.LineMap;
+import com.github.saniul.clonedetector.preprocessor.MinHashNormalizer;
 import com.github.saniul.clonedetector.preprocessor.MultiLineNormalizer;
 import com.github.saniul.clonedetector.preprocessor.Normalizer;
 import com.github.saniul.clonedetector.preprocessor.EmptyLineRemover;
@@ -28,6 +29,7 @@ public class Main {
 	private LineMap lineMap;
 	private CommandArgs cmdArgs = new CommandArgs();
 	private FileProcessor basicNormalizer;
+	private FileProcessor minHashNormalizer;
 
 	public Main() {
 		multiLineNormalizer = new MultiLineNormalizer();
@@ -35,17 +37,20 @@ public class Main {
 		normalizer = new Normalizer();
 		basicNormalizer = new BasicNormalizer();
 		mainAlgorithm = new MainAlgorithm();
+		minHashNormalizer = new MinHashNormalizer();
 		
 		lineMap = new LineMap();
 		multiLineNormalizer.setLineMap(lineMap);
 		emptyLineRemover.setLineMap(lineMap);
 		normalizer.setLineMap(lineMap);
 		basicNormalizer.setLineMap(lineMap);
+		minHashNormalizer.setLineMap(lineMap);
 		
 		multiLineNormalizer.setCommandArgs(cmdArgs);
 		emptyLineRemover.setCommandArgs(cmdArgs);
 		normalizer.setCommandArgs(cmdArgs);
 		basicNormalizer.setCommandArgs(cmdArgs);
+		minHashNormalizer.setCommandArgs(cmdArgs);
 	}
 	public void run() throws IOException {
 		File current = new File(inFiles.get(0));
@@ -57,7 +62,11 @@ public class Main {
 			current = multiLineNormalizer.getProcessedFile();
 		}
 		
-		if(cmdArgs.javaMode) {
+		if(cmdArgs.minHash) {
+			minHashNormalizer.setFile(current);
+			minHashNormalizer.process();
+			current = minHashNormalizer.getProcessedFile();
+		} else if(cmdArgs.javaMode) {
 			normalizer.setFile(current);
 			normalizer.process();
 			current = normalizer.getProcessedFile();
