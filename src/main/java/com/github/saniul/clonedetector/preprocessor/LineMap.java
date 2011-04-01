@@ -15,31 +15,39 @@ import org.apache.commons.lang.mutable.MutableInt;
 import com.github.saniul.clonedetector.CloneLines;
 
 public class LineMap {
-	public SortedMap<Integer, MutableInt> lineMap = new TreeMap<Integer, MutableInt>();
+	private List<MutableInt> lineMap = new ArrayList<MutableInt>();
 	
 	public void buildLineMap(File file) throws IOException {
-		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-		
+		 buildLineMap(new BufferedReader(new FileReader(file)));
+	}
+	public void buildLineMap(BufferedReader bufferedReader) throws IOException {
+		lineMap = new ArrayList<MutableInt>();
 		int lineCount = 0;
-		while (bufferedReader.readLine() != null) {
-			lineMap.put(lineCount, new MutableInt(lineCount));
-			lineCount++;
-		}
+		while (bufferedReader.readLine() != null)
+			lineMap.add(new MutableInt(lineCount++));
 		
 		//extra line for eof
-		lineMap.put(lineCount, new MutableInt(lineCount));
+		lineMap.add(new MutableInt(lineCount));
 	}
 
 	public void insertBlankLine(int lineNo) {
-		for (int l : lineMap.subMap(lineNo, lineMap.lastKey()).keySet())
-			lineMap.get(l).increment();
+		while(lineNo < lineMap.size())
+			lineMap.get(lineNo++).increment();
 	}
 
 	public void addAdditionalLine(int lineNo) {
+		if(++lineNo < lineMap.size())
+			while(lineNo < lineMap.size())
+				lineMap.get(lineNo++).decrement();
 		
+		int lastLine = lineMap.get(lineMap.size() - 1).intValue() + 1;
+		lineMap.add(new MutableInt(lastLine));
 	}
 	public void remap(List<CloneLines> inputList) {
 		for (CloneLines cloneLines : inputList)
 			cloneLines.remapLines(this);
+	}
+	public int translate(int processedLine) {
+		return lineMap.get(processedLine).intValue();
 	}
 }

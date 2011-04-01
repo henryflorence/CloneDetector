@@ -132,11 +132,11 @@ public class NormalizerTest {
 		assertEquals(normal.normalizeLine("true"),"BOOLLIT");
 	}
 	
-	@Test
+	/*@Test
 	public void normalizeDOTTest() {
 
 		assertEquals(normal.normalizeLine("."),"DOT");
-	}
+	}*/
 
 
 }

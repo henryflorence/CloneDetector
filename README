@@ -1,3 +1,25 @@
+How to run this program
+-----------------------
+
+1) Unzip the jar and lib/ folder into the same folder.
+2) execute: java -jar clonedetector.jar testFile.java, where testFile.java is the file under test
+
+The lib folder contains required library jars which are set as part of the classpath for the program jar.
+
+* java -jar clonedetector.jar -h will display: 
+basic usage: java -jar clonedetector.jar file.java
+-h -> display this message and exit
+-d -> display output from preprocessed stage
+-m -> use min hash fingerprinting
+-j -> java mode : default mode
+-c -> generic code mode
+-t -> plain text mode
+-l5 -> match min 5 duplicate lines, default: 6
+
+* example usage: java -jar clonedetector.jar -t warAndPeace.txt, for large plaintext clone detection.
+
+Development Section
+-------------------
 using maven2(.2.1) build system: http://maven.apache.org/download.html
 
 commands run in root directory (same as this file):
@@ -5,6 +27,7 @@ mvn clean
 mvn compile
 mvn test  // if we can be bothered
 mvn package
+mvn package assembly:assembly // create lib folder and set classpath in jar
 mvn emma:emma // code coverage
 mvn cobertura:cobertura // the pretty one
 
